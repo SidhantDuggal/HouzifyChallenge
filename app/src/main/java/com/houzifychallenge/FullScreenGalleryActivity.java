@@ -6,11 +6,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class FullScreenGalleryActivity extends AppCompatActivity {
@@ -25,10 +24,12 @@ public class FullScreenGalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen_gallery);
 
-        int position = Integer.valueOf(getIntent().getStringExtra("imagePosition"));
-        int totalImageCount = Integer.valueOf(getIntent().getStringExtra("totalImageCount"));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mViewPager = (CustomViewPager) findViewById(R.id.view_pager);
+        int position = Integer.valueOf(getIntent().getStringExtra("imagePosition"));
+        setTitle("Title#"+String.valueOf(position));
+
+        mViewPager = (CustomViewPager) findViewById(R.id.fullScreenGallery_viewPager);
         mViewPager.setAdapter(new TouchImageAdapter());
         mViewPager.setCurrentItem(position);
 
@@ -55,7 +56,7 @@ public class FullScreenGalleryActivity extends AppCompatActivity {
         @Override
         public View instantiateItem(ViewGroup container, int position) {
 
-            TouchImageView img = new TouchImageView(mContext);
+            ZoomImageView img = new ZoomImageView(mContext);
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), images.getResourceId(position, -1));
             img.setImageBitmap(bitmap);
             container.addView(img, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -77,6 +78,18 @@ public class FullScreenGalleryActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                super.onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

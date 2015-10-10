@@ -1,7 +1,8 @@
 <resources>
 
     <string name="app_name">HouzifyChallenge</string>
-    <string name="title_activity_home">Home</string>
+    <string name="title_activity_home">Challengify</string>
+    <string name="title_activity_detail">Image</string>
 
     <string-array name="image_ids">
         <item>@drawable/image_1</item>
