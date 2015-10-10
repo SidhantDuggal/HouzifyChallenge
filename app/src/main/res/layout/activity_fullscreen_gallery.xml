@@ -11,21 +11,16 @@
     android:background="#000"
     tools:context="com.houzifychallenge.FullScreenGalleryActivity">
 
-    <ImageView
-        android:id="@+id/fullscreenGallery_imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:scaleType="fitCenter" />
+    <!--<com.houzifychallenge.TouchImageView-->
+        <!--android:id="@+id/fullscreenGallery_imageView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:scaleType="matrix"/>-->
 
-    <TextView
-        android:id="@+id/fullscreenGallery_textView"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="#00000c"
-        android:padding="10dp"
-        android:textColor="#fff"
-        android:textSize="20sp" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>
