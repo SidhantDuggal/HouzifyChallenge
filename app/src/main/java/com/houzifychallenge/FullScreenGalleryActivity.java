@@ -12,12 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class FullScreenGalleryActivity extends AppCompatActivity {
 
-    private ViewPager mViewPager;
-    private ImageView mImageView;
+    private CustomViewPager mViewPager;
     private Context mContext;
 
     @Override
@@ -27,18 +25,12 @@ public class FullScreenGalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen_gallery);
 
-        String title = getIntent().getStringExtra("title");
         int position = Integer.valueOf(getIntent().getStringExtra("imagePosition"));
         int totalImageCount = Integer.valueOf(getIntent().getStringExtra("totalImageCount"));
-        TypedArray imgs = getResources().obtainTypedArray(R.array.image_ids);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(position, -1));
 
-        mViewPager = (ViewPager) findViewById(R.id.view_pager);
+        mViewPager = (CustomViewPager) findViewById(R.id.view_pager);
         mViewPager.setAdapter(new TouchImageAdapter());
         mViewPager.setCurrentItem(position);
-
-//        mImageView = (ImageView) findViewById(R.id.fullscreenGallery_imageView);
-//        mImageView.setImageBitmap(bitmap);
 
     }
 
